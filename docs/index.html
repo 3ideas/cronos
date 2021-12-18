@@ -82,11 +82,10 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There seem to be two</p>
 <p>When traces are loaded into the perfetto viewer, you can use the  Query(SQL) tool to filter on the trace data.</p>
-<p>There seems to be two main tables created at loaded, slice and args, there may be more but have not looked at them.</p>
-<p><strong>slice</strong> holds the event data and <strong>args</strong> holds all the parameters, joint on them using  <strong>arg_set_id</strong></p>
-<p>Note <strong>dur</strong> is in nano seconds, divide by 10^9 to get seconds.</p>
+<p>There seems to be two main tables created at loaded, <strong>slice</strong> and <strong>args</strong>, there may be more but have not looked at them.</p>
+<p><strong><strong>slice</strong></strong> holds the event data and <strong><strong>args</strong></strong> holds all the parameters, joint on them using  <strong>arg_set_id</strong></p>
+<p>Note <strong><strong>dur</strong></strong> is in nano seconds, divide by 10^9 to get seconds.</p>
 <h3 id="Example-Queries">Example Queries<a class="anchor-link" href="#Example-Queries"> </a></h3><p>All events matching a specific name,</p>
 
 <pre><code>select name, dur/1000000000.0,cat,a.string_value as event_time from slice s,args a where s.arg_set_id = a.arg_set_id  and
@@ -261,6 +260,15 @@ key = 'args.serverCPU' and real_value &gt; 0.05;</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Developing">Developing<a class="anchor-link" href="#Developing"> </a></h1><p>The script has been developed with nbdev as the markup/test env. See <a href="https://nbdev.fast.ai/tutorial.html">https://nbdev.fast.ai/tutorial.html</a> for more information.</p>
+<p>Contributions are welcome.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="License">License<a class="anchor-link" href="#License"> </a></h1><p>Copyright 2021-present Bill Traill 3ideas.co.uk. Released under the terms of the MIT license.</p>
+<p>If you're using the library in a commercial enviroment or product, please consider sponsoring its development or paying for maintenace of it. Contact bill@3ideas.co.uk</p>
 
 </div>
 </div>

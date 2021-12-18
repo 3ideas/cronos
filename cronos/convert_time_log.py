@@ -334,7 +334,10 @@ if __name__ == "__main__" and not IN_NOTEBOOK:
     import sys
     import random
 
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description='''Parse ADMS Client Timing Log into event time format, The output file can be viewed in https://ui.perfetto.dev/.
+    Source and doc for this utility can be found at https://github.com/3ideas/cronos
+    Copyright 3ideas Solutions Ltd ''')
+
     ap.add_argument('-p', '--nopreprocess', required=False,
                     help="don't preprocess the file to strip out extra EnmacClientTiming tags in the file", default=True, action='store_false')
     ap.add_argument("-f", "--file", required=True, help="file to parse to generate timing log file from ")

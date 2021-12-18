@@ -40,17 +40,15 @@ Then open and load the generated file into the viewer at https://ui.perfetto.dev
 
 ## Perfetto Queries
 
-There seem to be two
-
 
 When traces are loaded into the perfetto viewer, you can use the  Query(SQL) tool to filter on the trace data.
 
-There seems to be two main tables created at loaded, slice and args, there may be more but have not looked at them.
+There seems to be two main tables created at loaded, __slice__ and __args__, there may be more but have not looked at them.
 
-**slice** holds the event data and **args** holds all the parameters, joint on them using  **arg_set_id**
+**__slice__** holds the event data and **__args__** holds all the parameters, joint on them using  **arg_set_id**
 
 
-Note **dur** is in nano seconds, divide by 10^9 to get seconds.
+Note **__dur__** is in nano seconds, divide by 10^9 to get seconds.
 
 ### Example Queries
 
@@ -126,3 +124,11 @@ results in a pivot table with the following columns
 
 The script has been developed with nbdev as the markup/test env. See https://nbdev.fast.ai/tutorial.html for more information.
 
+Contributions are welcome.
+
+
+# License
+
+Copyright 2021-present Bill Traill 3ideas.co.uk. Released under the terms of the MIT license.
+
+If you're using the library in a commercial enviroment or product, please consider sponsoring its development or paying for maintenace of it. Contact bill@3ideas.co.uk
