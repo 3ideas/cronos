@@ -76,6 +76,190 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Perfetto-Queries">Perfetto Queries<a class="anchor-link" href="#Perfetto-Queries"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There seem to be two</p>
+<p>When traces are loaded into the perfetto viewer, you can use the  Query(SQL) tool to filter on the trace data.</p>
+<p>There seems to be two main tables created at loaded, slice and args, there may be more but have not looked at them.</p>
+<p><strong>slice</strong> holds the event data and <strong>args</strong> holds all the parameters, joint on them using  <strong>arg_set_id</strong></p>
+<p>Note <strong>dur</strong> is in nano seconds, divide by 10^9 to get seconds.</p>
+<h3 id="Example-Queries">Example Queries<a class="anchor-link" href="#Example-Queries"> </a></h3><p>All events matching a specific name,</p>
+
+<pre><code>select name, dur/1000000000.0,cat,a.string_value as event_time from slice s,args a where s.arg_set_id = a.arg_set_id  and
+name like '/enmac/alarmevent%'
+and a.flat_key = 'args.start';</code></pre>
+<table>
+<thead><tr>
+<th>name</th>
+<th>dur/1000000000.0</th>
+<th>cat</th>
+<th>event_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/enmac/alarmevent/config</td>
+<td>1.978688</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:23.902474+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/defaultOwnershipFilter</td>
+<td>0.239686</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:25.915164+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/alarms</td>
+<td>2.348028</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:28.903655+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/config</td>
+<td>0.672015</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:28.903655+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/defaultOwnershipFilter</td>
+<td>0.220828</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:29.612597+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/config</td>
+<td>1.4059788</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:29.880425+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/defaultOwnershipFilter</td>
+<td>0.2460132</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:31.332394+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/config</td>
+<td>0.628001</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:40.043329+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/defaultOwnershipFilter</td>
+<td>0.2149871</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:40.711331+00:00</td>
+</tr>
+<tr>
+<td>/enmac/alarmevent/config</td>
+<td>0.30245</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:46:40.980319+00:00</td>
+</tr>
+</tbody>
+</table>
+<p>finding the max or min of a specific event name.</p>
+
+<pre><code>select max(dur)/1000000000.0,min(dur)/1000000000.0 from slice where name like '/enmac/alarmevent%';</code></pre>
+<table>
+<thead><tr>
+<th>max(dur)/1000000000.0</th>
+<th>min(dur)/1000000000.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.348028</td>
+<td>0.2136729</td>
+</tr>
+</tbody>
+</table>
+<p>Select the thing that takes the longest time</p>
+
+<pre><code>select name,dur/1000000000.0,cat,string_value as event_time from slice s,args a 
+where dur in (select  max(dur) from slice) and 
+s.arg_set_id = a.arg_set_id and 
+flat_key ='args.start';</code></pre>
+<table>
+<thead><tr>
+<th>name</th>
+<th>dur/1000000000.0</th>
+<th>cat</th>
+<th>event_time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/enmac/swex/outages</td>
+<td>100.025012</td>
+<td>CreateDataSet</td>
+<td>2021-12-07T17:54:12.262573+00:00</td>
+</tr>
+<tr>
+<td><a href="https://trn1nms/enmac/swex/outages">https://trn1nms/enmac/swex/outages</a></td>
+<td>100.025012</td>
+<td>HttpWebRequest</td>
+<td>2021-12-07T17:54:12.262573+00:00</td>
+</tr>
+</tbody>
+</table>
+<p>select all events where serverCPU is greater than 0.05seconds</p>
+
+<pre><code>select distinct name,dur/1000000000.0 as 'duration(s)',category,real_value as serverCPU from 
+slice s,args a 
+where 
+s.arg_set_id = a.arg_set_id and
+key = 'args.serverCPU' and real_value &gt; 0.05;</code></pre>
+<table>
+<thead><tr>
+<th>name</th>
+<th>duration(s)</th>
+<th>category</th>
+<th>serverCPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://trn1nms/enmac/alarmevent/config">https://trn1nms/enmac/alarmevent/config</a></td>
+<td>0.999992</td>
+<td>HttpWebRequest</td>
+<td>0.0703</td>
+</tr>
+<tr>
+<td><a href="https://trn1nms/enmac/alarmevent/alarms">https://trn1nms/enmac/alarmevent/alarms</a></td>
+<td>2.1509</td>
+<td>HttpWebRequest</td>
+<td>0.0656</td>
+</tr>
+<tr>
+<td><a href="https://trn1nms/enmac/jobs/jobOperativeDetails">https://trn1nms/enmac/jobs/jobOperativeDetails</a></td>
+<td>5.602695</td>
+<td>HttpWebRequest</td>
+<td>0.1953</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="perfectto-pivot-tables">perfectto pivot tables<a class="anchor-link" href="#perfectto-pivot-tables"> </a></h2><p>Enable this feature in the <strong>Support</strong> section on the LHS under <strong>flags</strong></p>
+<p><img src="/cronos/assets/Pivot_query.png" alt="pivot table query screenshot"></p>
+<p>results in a pivot table with the following columns</p>
+<p><img src="/cronos/assets/pivot_table.png" alt="Pivot table screenshot"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Developing">Developing<a class="anchor-link" href="#Developing"> </a></h1><p>The script has been developed with nbdev as the markup/test env. See <a href="https://nbdev.fast.ai/tutorial.html">https://nbdev.fast.ai/tutorial.html</a> for more information.</p>
 
 </div>
