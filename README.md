@@ -14,9 +14,8 @@ Format for the time event file can be found here https://docs.google.com/documen
 
 ## Install
 
-`pip install 3ideas/cronos`
+The scipt can be found in cronos/convert_time_log.py  it shouldn't have dependencies outside the standard python libraries.
 
-Or just download the cronos directory. 
 
 ## How to use
 
@@ -36,3 +35,10 @@ And to output to stdout
 ```
 python cronos/convert_time_log.py -f logs/ADMSClientTiming_07_12_2021.log -s 
 ```
+
+Then open and load the generated file into the viewer at https://ui.perfetto.dev/
+
+# Developing
+
+The script has been developed with nbdev as the markup/test env. See https://nbdev.fast.ai/tutorial.html for more information.
+
