@@ -1,0 +1,14 @@
+{ "traceEvents": 
+[{"name": "SendNetServerMessage('MD_SET_PIPE_MESSAGE_FILTER', '135')", "cat": "FormAction,MainForm", "ph": "B", "pid": 1, "tid": 18, "ts": 1638899183903.476,"args": {"start": "2021-12-07T17:46:23.903476+00:00","client": "hydrogen-w11","form": "MainForm"},},
+{"name": "https://trn1nms/enmac/netserver/control", "cat": "HttpWebRequest", "ph": "B", "pid": 1, "tid": 18, "ts": 1638899183903.476,"args": {"parameters": {"postSize": "708","params": {"netserverid": "3203489","MemoryStream": "System.IO.MemoryStream"}},"start": "2021-12-07T17:46:23.903476+00:00","client": "hydrogen-w11","method": "POST","status": "OK","serverElapsed": "0.00","serverCPU": "0.0000"},},
+{"name": "https://trn1nms/enmac/netserver/control", "cat": "HttpWebRequest", "ph": "E", "pid": 1, "tid": 18, "ts": 1638899184779.897,},
+{"name": "SendNetServerMessage('MD_SET_PIPE_MESSAGE_FILTER', '135')", "cat": "FormAction,MainForm", "ph": "E", "pid": 1, "tid": 18, "ts": 1638899184779.897,},
+{"name": "/enmac/swex/outages", "cat": "CreateDataSet", "ph": "B", "pid": 1, "tid": 17, "ts": 1638899665282.274,"args": {"datatables": {"name": "Outages","number_of_tables": "5","error": "false","tables": [{"name": "OUTAGE_SITES","rows": "0"},{"name": "OUTAGE_FEEDERS","rows": "0"},{"name": "OUTAGE_DETAILS","rows": "7"},{"name": "OUTAGE_LOG","rows": "31"},{"name": "Param","rows": "1"}]},"start": "2021-12-07T17:54:25.282274+00:00","client": "hydrogen-w11"},},
+{"name": "https://trn1nms/enmac/swex/outages", "cat": "HttpWebRequest", "ph": "B", "pid": 1, "tid": 17, "ts": 1638899665283.277,"args": {"parameters": {"postSize": "24","params": {"incidentid": "A00000913OUT"}},"start": "2021-12-07T17:54:25.283277+00:00","client": "hydrogen-w11","method": "POST","status": "OK","serverElapsed": "0.00","serverCPU": "0.0005"},},
+{"name": "https://trn1nms/enmac/swex/outages", "cat": "HttpWebRequest", "ph": "E", "pid": 1, "tid": 17, "ts": 1638899710027.851,},
+{"name": "/enmac/swex/outages", "cat": "CreateDataSet", "ph": "E", "pid": 1, "tid": 17, "ts": 1638899710423.158,},
+],
+ "displayTimeUnit": "ms",
+ "systemTraceEvents": "SystemTraceData",
+ "otherData": { "version": "PowerOn Client Trace"},
+}

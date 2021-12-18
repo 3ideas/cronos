@@ -1,0 +1,28 @@
+<EnmacClientTiming>
+  <FormAction start="2021-12-07T17:46:23.903476+00:00" client="hydrogen-w11" thread="18" form="MainForm" action="SendNetServerMessage(&#39;MD_SET_PIPE_MESSAGE_FILTER&#39;, &#39;135&#39;)">
+    <HttpWebRequest start="2021-12-07T17:46:23.903476+00:00" client="hydrogen-w11" thread="18" method="POST" uri="https://trn1nms/enmac/netserver/control" status="OK" serverElapsed="0.00" serverCPU="0.0000">
+      <Parameters postSize="708">
+        <Parameter name="netserverid" value="3203489"/>
+        <Parameter name="MemoryStream" value="System.IO.MemoryStream"/>
+      </Parameters>
+      <Timing thread="18" end="2021-12-07T17:46:24.779897+00:00" elapsed="0.88"/>
+    </HttpWebRequest>
+    <Timing thread="18" end="2021-12-07T17:46:24.779897+00:00" elapsed="0.88"/>
+  </FormAction>
+  <CreateDataSet start="2021-12-07T17:54:25.282274+00:00" client="hydrogen-w11" thread="17" path="/enmac/swex/outages">
+    <HttpWebRequest start="2021-12-07T17:54:25.283277+00:00" client="hydrogen-w11" thread="17" method="POST" uri="https://trn1nms/enmac/swex/outages" status="OK" serverElapsed="0.00" serverCPU="0.0005">
+      <Parameters postSize="24">
+        <Parameter name="incidentid" value="A00000913OUT"/>
+      </Parameters>
+      <Timing thread="17" end="2021-12-07T17:55:10.027851+00:00" elapsed="44.74"/>
+    </HttpWebRequest>
+    <DataTables name="Outages" tables="5" error="false">
+      <DataTable name="OUTAGE_SITES" rows="0"/>
+      <DataTable name="OUTAGE_FEEDERS" rows="0"/>
+      <DataTable name="OUTAGE_DETAILS" rows="7"/>
+      <DataTable name="OUTAGE_LOG" rows="31"/>
+      <DataTable name="Param" rows="1"/>
+    </DataTables>
+    <Timing thread="17" end="2021-12-07T17:55:10.423158+00:00" elapsed="45.14"/>
+  </CreateDataSet>
+</EnmacClientTiming>
