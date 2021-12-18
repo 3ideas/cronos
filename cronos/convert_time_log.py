@@ -235,8 +235,8 @@ class parse_timing_log():
                     'client':elem.attrib["client"],
                     'method':elem.attrib["method"],
                     'status':elem.attrib["status"],
-                    'serverElapsed': elem.attrib["serverElapsed"],
-                    'serverCPU':elem.attrib["serverCPU"] }
+                    'serverElapsed': float(elem.attrib["serverElapsed"]),
+                    'serverCPU': float(elem.attrib["serverCPU"]) }
 
 
         self.t.write_start_element(name,categories ,pid,tid,ms,additional_args)
