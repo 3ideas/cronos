@@ -6,8 +6,8 @@ title: Cronos
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "A set of utilities to logs with time data in it and convert to trace event file format for "
-description: "A set of utilities to logs with time data in it and convert to trace event file format for "
+summary: "A set of utilities to logs with time data in it and convert to trace event file format for a certain ADMS client timing log files and apache httpd access logs."
+description: "A set of utilities to logs with time data in it and convert to trace event file format for a certain ADMS client timing log files and apache httpd access logs."
 nb_path: "index.ipynb"
 ---
 <!--
@@ -69,7 +69,10 @@ nb_path: "index.ipynb"
 <p>And to output to stdout</p>
 
 <pre><code>python cronos/convert_time_log.py -f logs/ADMSClientTiming_07_12_2021.log -s</code></pre>
-<p>Then open and load the generated file into the viewer at <a href="https://ui.perfetto.dev/">https://ui.perfetto.dev/</a></p>
+<p>For apache httpd logs</p>
+
+<pre><code>python cronos/convert_time_log.py -a logs/access.log.2021-12-03 -o access.log.2021-12-03.json</code></pre>
+<p>Then open and load the generated json file into the viewer at <a href="https://ui.perfetto.dev/">https://ui.perfetto.dev/</a></p>
 
 </div>
 </div>

@@ -5,10 +5,20 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"trace_log": "01_convert_time_log.ipynb",
          "format_value": "01_convert_time_log.ipynb",
          "strip_extra_EnmacClientTime_elements": "01_convert_time_log.ipynb",
-         "unix_time_millis": "01_convert_time_log.ipynb",
+         "unix_time_milliseconds": "01_convert_time_log.ipynb",
          "parse_dt": "01_convert_time_log.ipynb",
-         "parse_dt_to_millis": "01_convert_time_log.ipynb",
-         "parse_timing_log": "01_convert_time_log.ipynb"}
+         "parse_dt_to_milliseconds": "01_convert_time_log.ipynb",
+         "parse_httpd_dt": "01_convert_time_log.ipynb",
+         "parse_httpd_dt_to_milliseconds": "01_convert_time_log.ipynb",
+         "match_last2digits": "01_convert_time_log.ipynb",
+         "parse_timing_log": "01_convert_time_log.ipynb",
+         "parse_log_line": "01_convert_time_log.ipynb",
+         "parse_log_line_to_dict": "01_convert_time_log.ipynb",
+         "parse_httpd_log": "01_convert_time_log.ipynb",
+         "log_re": "01_convert_time_log.ipynb",
+         "request_re": "01_convert_time_log.ipynb",
+         "parse_httpd_log_file": "01_convert_time_log.ipynb",
+         "parse_timing_log_file": "01_convert_time_log.ipynb"}
 
 modules = ["convert_time_log.py"]
 

@@ -1,6 +1,6 @@
 
 # Cronos
-> A set of utilities to logs with time data in it and convert to trace event file format for 
+> A set of utilities to logs with time data in it and convert to trace event file format for a certain ADMS client timing log files and apache httpd access logs.
 
 
 
@@ -36,7 +36,12 @@ And to output to stdout
 python cronos/convert_time_log.py -f logs/ADMSClientTiming_07_12_2021.log -s 
 ```
 
-Then open and load the generated file into the viewer at https://ui.perfetto.dev/
+For apache httpd logs
+```
+python cronos/convert_time_log.py -a logs/access.log.2021-12-03 -o access.log.2021-12-03.json
+```
+
+Then open and load the generated json file into the viewer at https://ui.perfetto.dev/
 
 ## Perfetto Queries
 
